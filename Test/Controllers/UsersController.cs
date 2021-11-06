@@ -17,49 +17,10 @@ namespace Test.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Users(/*string sortOrder,*/)
+        public async Task<IActionResult> Users()
         {
-            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            //ViewData["MarriedSortParm"] = sortOrder == "Married" ? "married_desc" : "Married";
-            //ViewData["PhoneSortParm"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
-            //ViewData["SalarySortParm"] = sortOrder == "Salary" ? "salary_desc" : "Salary";
-            
             var users = from u in _context.Users select u;
             
-            //switch (sortOrder)
-            //{
-            //    case "name_desc":
-            //        users = users.OrderByDescending(u => u.Name);
-            //        break;
-            //    case "Date":
-            //        users = users.OrderBy(u => u.DateOfBirth);
-            //        break;
-            //    case "date_desc":
-            //        users = users.OrderByDescending(s => s.DateOfBirth);
-            //        break;
-            //    case "Married":
-            //        users = users.OrderBy(u => u.Married);
-            //        break;
-            //    case "married_desc":
-            //        users = users.OrderByDescending(s => s.Married);
-            //        break;
-            //    case "Phone":
-            //        users = users.OrderBy(u => u.Phone);
-            //        break;
-            //    case "phone_desc":
-            //        users = users.OrderByDescending(s => s.Phone);
-            //        break;
-            //    case "Salary":
-            //        users = users.OrderBy(u => u.Salary);
-            //        break;
-            //    case "salary_desc":
-            //        users = users.OrderByDescending(s => s.Salary);
-            //        break;
-            //    default:
-            //        users = users.OrderBy(s => s.Name);
-            //        break;
-            //}
             return View(await users.AsNoTracking().ToListAsync());
 
         }
