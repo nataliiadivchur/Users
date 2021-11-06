@@ -1,0 +1,35 @@
+﻿@model Test.Models.User
+@{
+    var dateOfBirth = Model.DateOfBirth.ToString("yyyy-MM-dd");
+    var salary = (double)Model.Salary;
+    var married = Model.Married == true ? "checked" : "unchecked";
+}
+<h2>Edit user</h2>
+<form asp-action="Edit" method="post">
+    <div class="form-actions no-color">
+        <p>
+            <input type="hidden" name="id" value="@Model.ID" />
+            <label for="name">Name</label><br>
+            <input type="text" name="name" value="@Model.Name" pattern="[a-zA-Z]*" required /><br><br>
+            <label for="dateOfBirth">Date of birth</label><br>
+            <input type="date" name="dateOfBirth" value="@dateOfBirth" max="2021-11-05" required /><br><br>
+            <input type="checkbox" id="married-checkbox" name="married" value="" onclick="CheckMarried()" @married>           
+            <label for="married">Married</label><br><br>
+            <label for="phone">Phone</label><br>
+            <input type="tel" name="phone" value="@Model.Phone" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" required />
+            <small>Format: 123 456 7890</small><br><br>
+            <label for="salary">Salary (USD)</label><br>
+            <input type="number" min="0" step="any" name="salary" value="@salary" required /><br><br>
+
+            <input type="submit" value="Edit" class="btn btn-dark" />
+        </p>
+    </div>
+</form>
+<script>
+    function CheckMarried() {
+        if (document.querySelector('#married-checkbox').checked) {
+            document.querySelector('#married-checkbox').value = "true";
+        }
+    }
+    
+</script>
